@@ -19,7 +19,7 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Hashtable;
-
+import android.util.Base64;
 
 public class RCTQRCodeLocalImage extends ReactContextBaseJavaModule {
     public RCTQRCodeLocalImage(ReactApplicationContext reactContext) {
