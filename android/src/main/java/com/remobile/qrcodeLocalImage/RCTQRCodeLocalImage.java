@@ -48,7 +48,7 @@ public class RCTQRCodeLocalImage extends ReactContextBaseJavaModule {
         if (path.startsWith("http://")||path.startsWith("https://")) {
             scanBitmap = this.getbitmap(path);
         } else {
-            scanBitmap = BitmapFactory.decodeFile(path, options);
+            scanBitmap = this.retrieveBitmap(path);
         }
         if (scanBitmap == null) {
             callback.invoke("cannot load image");
@@ -72,6 +72,14 @@ public class RCTQRCodeLocalImage extends ReactContextBaseJavaModule {
             callback.invoke("decode error");
         }
     }
+
+    public static Bitmap retrieveBitmap(String imageUri) {
+        byte[] imageBytes = Base64.decode(imageUri, Base64.DEFAULT);
+        Bitmap decodedImage = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
+        
+        return decodedImage;
+    }
+
 
     public static Bitmap getbitmap(String imageUri) {
         Bitmap bitmap = null;
