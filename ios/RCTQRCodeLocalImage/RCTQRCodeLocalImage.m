@@ -21,8 +21,12 @@ RCT_EXPORT_METHOD(decode:(NSString *)path callback:(RCTResponseSenderBlock)callb
         srcImage = [UIImage imageWithData: [NSData dataWithContentsOfURL:[NSURL URLWithString: path]]];
     } else {
         srcImage = [[UIImage alloc] initWithContentsOfFile:path];
-        NSData *decodedData = [[NSData alloc] initWithBase64EncodedString:path options:0];
-        srcImage = [UIImage imageWithData:decodedData];
+        
+        NSString *str = @"data:image/jpg;base64,";
+        str = [str stringByAppendingString:path];
+        
+        NSData *data = [[NSData alloc]initWithBase64EncodedString:path options:NSDataBase64DecodingIgnoreUnknownCharacters];
+        srcImage = [UIImage imageWithData:data];
     }
     if (nil==srcImage){
         NSLog(@"PROBLEM! IMAGE NOT LOADED\n");
