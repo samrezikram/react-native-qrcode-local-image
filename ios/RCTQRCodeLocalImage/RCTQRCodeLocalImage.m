@@ -30,7 +30,7 @@ RCT_EXPORT_METHOD(decode:(NSString *)path callback:(RCTResponseSenderBlock)callb
     }
     if (nil==srcImage){
         NSLog(@"PROBLEM! IMAGE NOT LOADED\n");
-        callback(@[RCTMakeError(@"IMAGE NOT LOADED!", nil, nil)]);
+        callback(@[RCTMakeError(@"Something went wrong while displaying QR code", nil, nil)]);
         return;
     }
     NSLog(@"OK - IMAGE LOADED\n");
@@ -52,7 +52,7 @@ RCT_EXPORT_METHOD(decode:(NSString *)path callback:(RCTResponseSenderBlock)callb
     if (result) {
         callback(@[[NSNull null], result]);
     } else {
-        callback(@[RCTMakeError(@"QR Parse failed!", nil, nil)]);
+        callback(@[RCTMakeError(@"Something went wrong while displaying QR code", nil, nil)]);
         return;
     }
 }

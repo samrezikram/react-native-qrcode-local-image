@@ -51,7 +51,7 @@ public class RCTQRCodeLocalImage extends ReactContextBaseJavaModule {
             scanBitmap = this.retrieveBitmap(path);
         }
         if (scanBitmap == null) {
-            callback.invoke("cannot load image");
+            callback.invoke("Something went wrong while displaying QR code");
             return;
         }
         int[] intArray = new int[scanBitmap.getWidth()*scanBitmap.getHeight()];
@@ -63,13 +63,13 @@ public class RCTQRCodeLocalImage extends ReactContextBaseJavaModule {
         try {
             Result result = reader.decode(bitmap, hints);
             if (result == null) {
-                callback.invoke("image format error");
+                callback.invoke("Something went wrong while displaying QR code");
             } else {
                 callback.invoke(null, result.toString());
             }
 
         } catch (Exception e) {
-            callback.invoke("decode error");
+            callback.invoke("Something went wrong while displaying QR code");
         }
     }
 
